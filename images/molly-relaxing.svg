@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- LIVING HER BEST LIFE - Spa day / vacation mode Molly -->
+
+  <!-- Tropical paradise background -->
+  <rect width="400" height="300" fill="#87CEEB"/>
+
+  <!-- Sun -->
+  <circle cx="350" cy="50" r="40" fill="#FFD700"/>
+  <g stroke="#FFD700" stroke-width="3" opacity="0.6">
+    <line x1="350" y1="0" x2="350" y2="15"/>
+    <line x1="390" y1="50" x2="400" y2="50"/>
+    <line x1="380" y1="20" x2="395" y2="5"/>
+    <line x1="380" y1="80" x2="395" y2="95"/>
+  </g>
+
+  <!-- Ocean -->
+  <ellipse cx="200" cy="350" rx="250" ry="100" fill="#40E0D0"/>
+  <ellipse cx="200" cy="340" rx="240" ry="80" fill="#48D1CC"/>
+
+  <!-- Beach/sand -->
+  <ellipse cx="200" cy="280" rx="200" ry="50" fill="#F4D03F"/>
+  <ellipse cx="200" cy="275" rx="190" ry="40" fill="#F7DC6F"/>
+
+  <!-- Palm tree -->
+  <rect x="60" y="120" width="15" height="130" fill="#8B4513"/>
+  <ellipse cx="67" cy="120" rx="50" ry="15" fill="#228B22" transform="rotate(-30 67 120)"/>
+  <ellipse cx="67" cy="120" rx="50" ry="15" fill="#2E8B57" transform="rotate(20 67 120)"/>
+  <ellipse cx="67" cy="120" rx="45" ry="12" fill="#32CD32" transform="rotate(-60 67 120)"/>
+  <ellipse cx="67" cy="120" rx="45" ry="12" fill="#228B22" transform="rotate(50 67 120)"/>
+
+  <!-- Beach umbrella -->
+  <rect x="280" y="150" width="5" height="100" fill="#8B4513"/>
+  <path d="M230 150 Q282 100 335 150 Z" fill="#FF6B6B"/>
+  <path d="M240 150 Q260 120 282 150 Z" fill="#FFD700"/>
+  <path d="M282 150 Q305 120 325 150 Z" fill="#FFD700"/>
+
+  <!-- MOLLY ON A LOUNGE CHAIR -->
+  <!-- Lounge chair -->
+  <rect x="150" y="200" width="140" height="8" fill="#FF69B4" rx="4"/>
+  <rect x="155" y="208" width="5" height="40" fill="#FF69B4"/>
+  <rect x="280" y="208" width="5" height="40" fill="#FF69B4"/>
+  <rect x="270" y="170" width="30" height="35" fill="#FF69B4" rx="3" transform="rotate(-20 285 185)"/>
+
+  <!-- Towel on chair -->
+  <rect x="155" y="195" width="130" height="12" fill="#E6E6FA"/>
+  <line x1="160" y1="198" x2="160" y2="204" stroke="#D8BFD8" stroke-width="2"/>
+  <line x1="170" y1="198" x2="170" y2="204" stroke="#D8BFD8" stroke-width="2"/>
+  <line x1="180" y1="198" x2="180" y2="204" stroke="#D8BFD8" stroke-width="2"/>
+
+  <!-- Molly's body - stretched out luxuriously -->
+  <ellipse cx="220" cy="185" rx="70" ry="25" fill="#2C2C2C"/>
+
+  <!-- Back legs hanging off -->
+  <ellipse cx="280" cy="200" rx="12" ry="20" fill="#2C2C2C"/>
+  <ellipse cx="290" cy="215" rx="10" ry="8" fill="#2C2C2C"/>
+
+  <!-- Front legs stretched -->
+  <ellipse cx="155" cy="195" rx="15" ry="10" fill="#2C2C2C"/>
+
+  <!-- Head resting on pillow (back of chair) -->
+  <ellipse cx="285" cy="160" rx="35" ry="30" fill="#2C2C2C" transform="rotate(20 285 160)"/>
+
+  <!-- Ears flopped to the side -->
+  <ellipse cx="260" cy="140" rx="15" ry="28" fill="#1a1a1a" transform="rotate(-10 260 140)"/>
+  <ellipse cx="315" cy="155" rx="15" ry="25" fill="#1a1a1a" transform="rotate(40 315 155)"/>
+
+  <!-- SUNGLASSES - essential -->
+  <ellipse cx="275" cy="155" rx="18" ry="12" fill="#1a1a1a"/>
+  <ellipse cx="305" cy="160" rx="18" ry="12" fill="#1a1a1a"/>
+  <rect x="291" y="155" width="8" height="3" fill="#1a1a1a"/>
+  <!-- Lens shine -->
+  <ellipse cx="270" cy="152" rx="5" ry="3" fill="#333"/>
+  <ellipse cx="300" cy="157" rx="5" ry="3" fill="#333"/>
+
+  <!-- Snout poking out under glasses -->
+  <ellipse cx="290" cy="175" rx="18" ry="12" fill="#3d3d3d"/>
+  <!-- Gray muzzle -->
+  <ellipse cx="290" cy="172" rx="12" ry="7" fill="#5a5a5a"/>
+  <!-- Nose -->
+  <ellipse cx="290" cy="182" rx="10" ry="6" fill="#1a1a1a"/>
+
+  <!-- Relaxed smile -->
+  <path d="M280 188 Q290 193 300 188" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+
+  <!-- Tropical drink -->
+  <g transform="translate(140, 170)">
+    <rect x="0" y="10" width="20" height="30" fill="#FF6347" rx="3"/>
+    <ellipse cx="10" cy="10" rx="12" ry="5" fill="#FF6347"/>
+    <rect x="8" y="-15" width="3" height="25" fill="#8B4513"/>
+    <circle cx="10" cy="-18" r="8" fill="#FF4500"/>
+    <polygon points="10,-18 15,-10 5,-10" fill="#32CD32"/>
+    <!-- Tiny umbrella -->
+    <line x1="18" y1="5" x2="25" y2="-10" stroke="#FFD700" stroke-width="2"/>
+    <path d="M20,-15 Q25,-20 30,-15 L25,-10 Z" fill="#FF69B4"/>
+  </g>
+
+  <!-- "Do Not Disturb" sign hanging from umbrella -->
+  <g transform="translate(240, 155)">
+    <rect x="0" y="0" width="50" height="20" fill="#fff" rx="3" stroke="#ccc"/>
+    <text x="25" y="14" text-anchor="middle" font-family="Arial" font-size="7" fill="#FF0000">DO NOT</text>
+    <text x="25" y="20" text-anchor="middle" font-family="Arial" font-size="5" fill="#FF0000">DISTURB</text>
+  </g>
+
+  <!-- Thought bubble -->
+  <circle cx="320" cy="100" r="6" fill="#fff"/>
+  <circle cx="335" cy="85" r="10" fill="#fff"/>
+  <ellipse cx="360" cy="60" rx="30" ry="22" fill="#fff"/>
+  <text x="360" y="58" text-anchor="middle" font-size="10" fill="#333">No vets</text>
+  <text x="360" y="70" text-anchor="middle" font-size="10" fill="#333">allowed</text>
+
+  <!-- Sparkles -->
+  <text x="50" y="60" font-size="18">✨</text>
+  <text x="180" y="130" font-size="14">☀️</text>
+
+  <!-- Living best life text -->
+  <text x="200" y="25" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="20" fill="#FF69B4">
+    ~ Living Her Best Life ~
+  </text>
+</svg>

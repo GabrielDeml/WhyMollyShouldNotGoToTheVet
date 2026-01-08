@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- MAXIMUM DRAMA - Molly's Oscar-worthy puppy eyes performance -->
+
+  <!-- Dramatic spotlight background -->
+  <rect width="400" height="300" fill="#1a1a2e"/>
+
+  <!-- Dramatic spotlight effect -->
+  <ellipse cx="200" cy="180" rx="180" ry="150" fill="#2d2d44"/>
+  <ellipse cx="200" cy="180" rx="150" ry="120" fill="#3d3d54"/>
+  <ellipse cx="200" cy="180" rx="120" ry="100" fill="#4d4d64"/>
+
+  <!-- Spotlight beam from above -->
+  <polygon points="150,0 250,0 280,120 120,120" fill="#FFE4B5" opacity="0.1"/>
+
+  <!-- Molly's face - GIANT for maximum eye impact -->
+  <ellipse cx="200" cy="170" rx="100" ry="90" fill="#2C2C2C"/>
+
+  <!-- Those ears drooping sadly -->
+  <ellipse cx="90" cy="140" rx="35" ry="60" fill="#1a1a1a" transform="rotate(-25 90 140)"/>
+  <ellipse cx="310" cy="140" rx="35" ry="60" fill="#1a1a1a" transform="rotate(25 310 140)"/>
+
+  <!-- THE EYES - comically large and watery -->
+  <!-- Left eye -->
+  <ellipse cx="155" cy="150" rx="45" ry="40" fill="#fff"/>
+  <ellipse cx="160" cy="155" rx="30" ry="28" fill="#8B7355"/>
+  <ellipse cx="160" cy="155" rx="18" ry="18" fill="#2C1810"/>
+  <!-- Massive anime-style shine -->
+  <ellipse cx="172" cy="142" rx="12" ry="10" fill="#fff"/>
+  <ellipse cx="150" cy="165" rx="6" ry="5" fill="#fff" opacity="0.7"/>
+  <!-- Tears welling up -->
+  <ellipse cx="155" cy="190" rx="8" ry="12" fill="#87CEEB" opacity="0.6"/>
+
+  <!-- Right eye -->
+  <ellipse cx="245" cy="150" rx="45" ry="40" fill="#fff"/>
+  <ellipse cx="240" cy="155" rx="30" ry="28" fill="#8B7355"/>
+  <ellipse cx="240" cy="155" rx="18" ry="18" fill="#2C1810"/>
+  <!-- Massive anime-style shine -->
+  <ellipse cx="252" cy="142" rx="12" ry="10" fill="#fff"/>
+  <ellipse cx="230" cy="165" rx="6" ry="5" fill="#fff" opacity="0.7"/>
+  <!-- Tears welling up -->
+  <ellipse cx="245" cy="190" rx="8" ry="12" fill="#87CEEB" opacity="0.6"/>
+
+  <!-- Extremely worried eyebrows -->
+  <path d="M105 110 Q155 85 195 120" stroke="#1a1a1a" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M295 110 Q245 85 205 120" stroke="#1a1a1a" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+  <!-- Snout -->
+  <ellipse cx="200" cy="210" rx="40" ry="30" fill="#3d3d3d"/>
+
+  <!-- Gray muzzle -->
+  <ellipse cx="200" cy="205" rx="25" ry="15" fill="#5a5a5a"/>
+
+  <!-- Nose -->
+  <ellipse cx="200" cy="225" rx="18" ry="12" fill="#1a1a1a"/>
+  <ellipse cx="196" cy="222" rx="5" ry="3" fill="#3d3d3d"/>
+
+  <!-- Wobbly sad mouth -->
+  <path d="M175 245 Q185 255 200 250 Q215 255 225 245" stroke="#1a1a1a" stroke-width="4" fill="none"/>
+
+  <!-- Single dramatic tear drop falling -->
+  <ellipse cx="280" cy="220" rx="6" ry="10" fill="#87CEEB">
+    <animate attributeName="cy" values="220;280;220" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="2s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Drama text -->
+  <text x="200" y="35" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#FFD700" font-style="italic">
+    "How could you?"
+  </text>
+
+  <!-- Oscar statuette silhouette joke -->
+  <g transform="translate(340, 250) scale(0.4)">
+    <ellipse cx="30" cy="100" rx="20" ry="10" fill="#FFD700" opacity="0.3"/>
+    <rect x="25" y="50" width="10" height="50" fill="#FFD700" opacity="0.3"/>
+    <circle cx="30" cy="40" r="12" fill="#FFD700" opacity="0.3"/>
+  </g>
+
+  <!-- Small text -->
+  <text x="350" y="295" text-anchor="middle" font-family="Arial" font-size="8" fill="#666">Best Actress</text>
+
+  <!-- Floating broken hearts -->
+  <text x="50" y="60" font-size="20" opacity="0.5">💔</text>
+  <text x="340" y="80" font-size="16" opacity="0.4">💔</text>
+</svg>
