@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why Molly Should NOT Go to the Vet</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Patrick+Hand&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,206 +17,342 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', 'Chalkboard', cursive;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Patrick Hand', cursive;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
             min-height: 100vh;
-            color: #333;
+            overflow-x: hidden;
         }
 
+        .app-container {
+            position: relative;
+        }
+
+        /* Floating paw prints background */
+        .paw-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-paw {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: floatAround 20s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Hero section */
         .hero {
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(255,107,107,0.9) 0%, rgba(255,107,107,0) 100%);
         }
 
-        h1 {
+        .hero h1 {
+            font-family: 'Bubblegum Sans', cursive;
             font-size: 3.5rem;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
+            text-shadow: 4px 4px 0 #ff6b6b, 6px 6px 0 rgba(0,0,0,0.2);
+            animation: titleBounce 0.5s ease-in-out infinite alternate;
+            margin-bottom: 15px;
+        }
+
+        @keyframes titleBounce {
+            from { transform: scale(1) rotate(-1deg); }
+            to { transform: scale(1.02) rotate(1deg); }
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            color: #ffeb3b;
-            font-style: italic;
+            font-size: 1.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .molly-intro {
-            background: white;
-            max-width: 800px;
-            margin: -30px auto 40px;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .molly-intro img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Fallback for missing images */
-        img {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-        }
-
-        img::before {
-            content: '🐕';
+        .dog-emoji-header {
             font-size: 4rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+            animation: wagTail 0.3s ease-in-out infinite alternate;
+            display: inline-block;
         }
 
-        .molly-intro h2 {
-            color: #764ba2;
-            margin: 20px 0;
-            font-size: 2rem;
+        @keyframes wagTail {
+            from { transform: rotate(-10deg); }
+            to { transform: rotate(10deg); }
         }
 
-        .reasons-container {
-            max-width: 1200px;
+        /* Molly card */
+        .molly-card {
+            position: relative;
+            z-index: 1;
+            background: white;
+            max-width: 700px;
+            margin: -20px auto 40px;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 8px #ffeb3b;
+            transform: rotate(-1deg);
+        }
+
+        .molly-card:hover {
+            transform: rotate(0deg) scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        .molly-card img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            border: 5px dashed #ff6b6b;
+        }
+
+        .molly-card h2 {
+            font-family: 'Bubblegum Sans', cursive;
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin: 20px 0 10px;
+        }
+
+        .molly-card p {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Reasons section */
+        .reasons-section {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .reason {
+        .reason-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             margin: 30px 0;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
             display: flex;
-            flex-direction: row;
-            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 4px solid transparent;
         }
 
-        .reason:nth-child(even) {
+        .reason-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            border-color: #ffeb3b;
+        }
+
+        .reason-card:nth-child(even) {
             flex-direction: row-reverse;
+        }
+
+        .reason-card:nth-child(even):hover {
+            transform: translateY(-10px) rotate(-1deg);
         }
 
         .reason-image {
             flex: 1;
-            min-height: 300px;
+            min-height: 280px;
+            background: linear-gradient(135deg, #667eea33 0%, #764ba233 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
         }
 
         .reason-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            min-height: 300px;
         }
 
         .reason-content {
             flex: 1;
-            padding: 40px;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .reason-number {
+            font-family: 'Bubblegum Sans', cursive;
             font-size: 4rem;
-            color: #667eea;
-            font-weight: bold;
+            color: #ff6b6b;
             line-height: 1;
+            text-shadow: 3px 3px 0 #ffeb3b;
         }
 
         .reason-title {
+            font-family: 'Bubblegum Sans', cursive;
             font-size: 1.8rem;
             color: #333;
             margin: 10px 0;
         }
 
         .reason-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #666;
             line-height: 1.6;
         }
 
-        .paw-divider {
-            text-align: center;
-            font-size: 2rem;
-            margin: 20px 0;
-        }
-
+        /* Evidence gallery */
         .evidence-section {
+            position: relative;
+            z-index: 1;
             background: rgba(255,255,255,0.95);
             padding: 60px 20px;
-            text-align: center;
+            margin-top: 40px;
         }
 
         .evidence-section h2 {
-            color: #764ba2;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-family: 'Bubblegum Sans', cursive;
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 0 #ffeb3b;
         }
 
         .evidence-gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
         .evidence-item {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 300px;
+            max-width: 220px;
+            transition: transform 0.3s ease;
+            border: 3px dashed #74ebd5;
         }
 
-        .evidence-item img {
+        .evidence-item:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .evidence-item:nth-child(even):hover {
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .evidence-item img, .evidence-placeholder {
             width: 100%;
-            border-radius: 10px;
+            height: 150px;
+            border-radius: 15px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
         }
 
         .evidence-item p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-style: italic;
             color: #666;
+            text-align: center;
+            font-size: 1.1rem;
         }
 
-        .petition {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        /* Petition section */
+        .petition-section {
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa07a 100%);
             padding: 60px 20px;
             text-align: center;
         }
 
-        .petition h2 {
+        .petition-section h2 {
+            font-family: 'Bubblegum Sans', cursive;
             color: white;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
+            animation: shake 0.5s ease-in-out infinite;
         }
 
-        .petition p {
+        @keyframes shake {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .petition-section p {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             max-width: 600px;
             margin: 0 auto 30px;
         }
 
-        .signature-count {
+        .signature-counter {
             background: white;
             display: inline-block;
-            padding: 20px 40px;
+            padding: 25px 50px;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2), 0 0 0 5px #ffeb3b;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            user-select: none;
+        }
+
+        .signature-counter:hover {
+            transform: scale(1.05);
+        }
+
+        .signature-counter:active {
+            transform: scale(0.95);
+        }
+
+        .signature-number {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 3.5rem;
+            display: block;
+            color: #ff6b6b;
+        }
+
+        .sign-button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 15px 40px;
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.5rem;
+            background: #ffeb3b;
+            color: #333;
+            border: none;
             border-radius: 50px;
-            font-size: 2rem;
-            color: #f5576c;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
         }
 
-        .signature-count span {
-            font-size: 3rem;
-            font-weight: bold;
+        .sign-button:hover {
+            transform: scale(1.1);
         }
 
+        /* Footer */
         footer {
+            position: relative;
+            z-index: 1;
             background: #333;
             color: white;
             text-align: center;
@@ -219,214 +360,285 @@
         }
 
         footer p {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
-        .woof {
-            animation: wobble 0.5s ease-in-out infinite alternate;
-            display: inline-block;
+        .disclaimer {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            opacity: 0.7;
         }
 
-        @keyframes wobble {
-            from { transform: rotate(-3deg); }
-            to { transform: rotate(3deg); }
+        /* Bark popup */
+        .bark-popup {
+            position: fixed;
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 2rem;
+            color: #ff6b6b;
+            pointer-events: none;
+            z-index: 9999;
+            animation: barkFloat 1s ease-out forwards;
+            text-shadow: 2px 2px 0 #ffeb3b;
         }
 
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        @keyframes barkFloat {
+            0% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-80px) scale(1.5) rotate(20deg); }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .reason { flex-direction: column !important; }
+            .hero h1 { font-size: 2rem; }
+            .reason-card { flex-direction: column !important; }
             .reason-content { padding: 20px; }
             .reason-number { font-size: 3rem; }
             .reason-title { font-size: 1.4rem; }
+            .evidence-item { max-width: 45%; }
         }
     </style>
 </head>
 <body>
-    <header class="hero">
-        <h1 class="floating">Why Molly Should NOT Go to the Vet</h1>
-        <p class="subtitle">A formal petition by Molly the Dachshund</p>
-    </header>
+    <div id="root"></div>
 
-    <section class="molly-intro">
-        <img src="images/molly-cozy.jpg" alt="Molly looking adorable in blankets">
-        <h2>Meet Molly</h2>
-        <p>This is Molly. She is a distinguished black dachshund with years of experience in avoiding the vet. Below, she presents her case for why she should absolutely, definitely, 100% NOT go to the vet today (or ever).</p>
-    </section>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+        // Floating paw prints background
+        function PawBackground() {
+            const paws = Array.from({ length: 20 }, (_, i) => ({
+                id: i,
+                left: Math.random() * 100,
+                delay: Math.random() * 20,
+                duration: 15 + Math.random() * 10
+            }));
 
-    <section class="reasons-container">
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-sad-eyes.jpg" alt="Molly with sad eyes">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#1</div>
-                <h3 class="reason-title">Look At These Eyes</h3>
-                <p class="reason-text">Just LOOK at these eyes! How could anyone subject these beautiful, soulful, slightly judgmental eyes to the trauma of a vet visit? The sadness. The betrayal. The "I trusted you" energy. Case closed.</p>
-            </div>
-        </div>
+            return (
+                <div className="paw-bg">
+                    {paws.map(paw => (
+                        <span
+                            key={paw.id}
+                            className="floating-paw"
+                            style={{
+                                left: `${paw.left}%`,
+                                animationDelay: `${paw.delay}s`,
+                                animationDuration: `${paw.duration}s`
+                            }}
+                        >
+                            🐾
+                        </span>
+                    ))}
+                </div>
+            );
+        }
 
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-sweater.jpg" alt="Molly in colorful sweater">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#2</div>
-                <h3 class="reason-title">Fashion Forward, Not Vet-Ward</h3>
-                <p class="reason-text">Molly is clearly too fashionable for the vet. This rainbow serape sweater was NOT chosen to be covered by a cold stethoscope. She has a reputation to maintain. The vet waiting room is NOT a runway.</p>
-            </div>
-        </div>
+        // Bark effect component
+        function BarkEffect({ barks, removeOldBarks }) {
+            useEffect(() => {
+                const timer = setTimeout(removeOldBarks, 1000);
+                return () => clearTimeout(timer);
+            }, [barks]);
 
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-relaxing.jpg" alt="Molly relaxing outside">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#3</div>
-                <h3 class="reason-title">Already Perfectly Healthy (Obviously)</h3>
-                <p class="reason-text">Look at this peak physical specimen. Lounging in the shade, conserving energy, supervising humans - these are signs of a healthy dog! Going to the vet might actually CAUSE stress, which is bad for health. Science!</p>
-            </div>
-        </div>
+            return (
+                <>
+                    {barks.map(bark => (
+                        <div
+                            key={bark.id}
+                            className="bark-popup"
+                            style={{ left: bark.x, top: bark.y }}
+                        >
+                            {bark.text}
+                        </div>
+                    ))}
+                </>
+            );
+        }
 
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-cozy.jpg" alt="Molly cozy in blankets">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#4</div>
-                <h3 class="reason-title">The Blanket Nest Cannot Be Abandoned</h3>
-                <p class="reason-text">It took HOURS to achieve this perfect blanket nest configuration. HOURS! Do you know how long it takes a dachshund to burrow into exactly the right position? The vet can wait. The blankets cannot.</p>
-            </div>
-        </div>
+        // Image with fallback
+        function DogImage({ src, alt, fallbackEmoji = "🐕" }) {
+            const [error, setError] = useState(false);
 
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-sad-eyes.jpg" alt="Molly's soulful expression">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#5</div>
-                <h3 class="reason-title">The Cold Table Trauma</h3>
-                <p class="reason-text">The metal table is COLD. Dachshunds are approximately 87% sausage and 13% drama. Cold tables are an affront to sausage dogs everywhere. It's basically a human rights violation. Dog rights? Wiener rights.</p>
-            </div>
-        </div>
+            if (error) {
+                return <div className="evidence-placeholder">{fallbackEmoji}</div>;
+            }
 
-        <div class="reason">
-            <div class="reason-image">
-                <img src="images/molly-sweater.jpg" alt="Molly standing proud">
-            </div>
-            <div class="reason-content">
-                <div class="reason-number">#6</div>
-                <h3 class="reason-title">She Already Did Her Job Today</h3>
-                <p class="reason-text">Molly has already barked at exactly 3 suspicious leaves, supervised 2 meals, and performed 47 quality control sniffs today. That's a FULL workday. She's earned her rest, not a car ride to the scary place.</p>
-            </div>
-        </div>
-    </section>
+            return (
+                <img
+                    src={src}
+                    alt={alt}
+                    onError={() => setError(true)}
+                />
+            );
+        }
 
-    <div class="paw-divider">🐾 🐾 🐾 🐾 🐾</div>
+        // Reason card component
+        function ReasonCard({ number, title, text, image, emoji }) {
+            return (
+                <div className="reason-card">
+                    <div className="reason-image">
+                        {image ? (
+                            <DogImage src={image} alt={title} fallbackEmoji={emoji} />
+                        ) : (
+                            <span>{emoji}</span>
+                        )}
+                    </div>
+                    <div className="reason-content">
+                        <div className="reason-number">#{number}</div>
+                        <h3 className="reason-title">{title}</h3>
+                        <p className="reason-text">{text}</p>
+                    </div>
+                </div>
+            );
+        }
 
-    <section class="evidence-section">
-        <h2>Exhibit A: Too Cute for Vet</h2>
-        <div class="evidence-gallery">
-            <div class="evidence-item">
-                <img src="images/molly-cozy.jpg" alt="Evidence photo 1">
-                <p>"Your Honor, I present: maximum coziness"</p>
-            </div>
-            <div class="evidence-item">
-                <img src="images/molly-sad-eyes.jpg" alt="Evidence photo 2">
-                <p>"Exhibit B: The face of innocence"</p>
-            </div>
-            <div class="evidence-item">
-                <img src="images/molly-sweater.jpg" alt="Evidence photo 3">
-                <p>"Exhibit C: Too stylish to be poked"</p>
-            </div>
-            <div class="evidence-item">
-                <img src="images/molly-relaxing.jpg" alt="Evidence photo 4">
-                <p>"Exhibit D: Clearly thriving"</p>
-            </div>
-        </div>
-    </section>
+        // Main App
+        function App() {
+            const [signatures, setSignatures] = useState(1000000);
+            const [barks, setBarks] = useState([]);
 
-    <section class="petition">
-        <h2 class="woof">Sign the Petition!</h2>
-        <p>Join Molly in her noble quest to avoid the scary place with the cold tables and the treat-bribery lies.</p>
-        <div class="signature-count">
-            <span>1,000,000</span> Good Dogs Agree
-        </div>
-    </section>
+            const barkPhrases = ["WOOF!", "ARF!", "BORK!", "YAP!", "RUFF!", "*whimper*", "NO VET!", "TREATS?"];
 
-    <footer>
-        <p>Made with 🐾 by Molly's Legal Defense Team</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">(Molly's humans would like to note that she DOES go to the vet because they love her very much)</p>
-    </footer>
-
-    <script>
-        // Add some fun interactivity
-        document.querySelector('.signature-count span').addEventListener('click', function() {
-            let count = parseInt(this.textContent.replace(/,/g, ''));
-            count += Math.floor(Math.random() * 100) + 1;
-            this.textContent = count.toLocaleString();
-            this.style.transform = 'scale(1.1)';
-            setTimeout(() => this.style.transform = 'scale(1)', 200);
-        });
-
-        // Handle missing images gracefully
-        document.querySelectorAll('img').forEach(img => {
-            img.onerror = function() {
-                this.style.display = 'flex';
-                this.style.alignItems = 'center';
-                this.style.justifyContent = 'center';
-                this.style.background = 'linear-gradient(135deg, #667eea33 0%, #764ba233 100%)';
-                this.style.minHeight = '200px';
-                this.alt = 'Photo of adorable Molly coming soon!';
-
-                // Create a placeholder div
-                const placeholder = document.createElement('div');
-                placeholder.innerHTML = '🐕<br><small>Molly pic loading...</small>';
-                placeholder.style.cssText = 'text-align:center;font-size:3rem;padding:20px;';
-                this.parentNode.replaceChild(placeholder, this);
+            const handleClick = (e) => {
+                if (Math.random() < 0.15) {
+                    const newBark = {
+                        id: Date.now(),
+                        x: e.clientX,
+                        y: e.clientY,
+                        text: barkPhrases[Math.floor(Math.random() * barkPhrases.length)]
+                    };
+                    setBarks(prev => [...prev, newBark]);
+                }
             };
-        });
 
-        // Add bark sound effect (just visual)
-        document.body.addEventListener('click', function(e) {
-            if (Math.random() < 0.1) {
-                const bark = document.createElement('div');
-                bark.textContent = 'Woof!';
-                bark.style.cssText = `
-                    position: fixed;
-                    left: ${e.clientX}px;
-                    top: ${e.clientY}px;
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    color: #764ba2;
-                    pointer-events: none;
-                    animation: barkFloat 1s ease-out forwards;
-                    z-index: 9999;
-                `;
-                document.body.appendChild(bark);
-                setTimeout(() => bark.remove(), 1000);
-            }
-        });
+            const removeOldBarks = () => {
+                setBarks(prev => prev.slice(1));
+            };
 
-        // Add the bark animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes barkFloat {
-                0% { opacity: 1; transform: translateY(0) scale(1); }
-                100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
-            }
-        `;
-        document.head.appendChild(style);
+            const handleSign = () => {
+                const increase = Math.floor(Math.random() * 500) + 100;
+                setSignatures(prev => prev + increase);
+            };
+
+            const reasons = [
+                {
+                    number: 1,
+                    title: "Look At These Eyes!",
+                    text: "Just LOOK at these eyes! How could anyone subject these beautiful, soulful, slightly judgmental eyes to the trauma of a vet visit? The sadness. The betrayal. The \"I trusted you\" energy. Case closed.",
+                    image: "images/molly-sad-eyes.jpg",
+                    emoji: "🥺"
+                },
+                {
+                    number: 2,
+                    title: "Fashion Forward, Not Vet-Ward",
+                    text: "Molly is clearly too fashionable for the vet. This rainbow serape sweater was NOT chosen to be covered by a cold stethoscope. She has a reputation to maintain. The vet waiting room is NOT a runway.",
+                    image: "images/molly-sweater.jpg",
+                    emoji: "👗"
+                },
+                {
+                    number: 3,
+                    title: "Already Perfectly Healthy (Obviously)",
+                    text: "Look at this peak physical specimen. Lounging in the shade, conserving energy, supervising humans - these are signs of a healthy dog! Going to the vet might actually CAUSE stress, which is bad for health. Science!",
+                    image: "images/molly-relaxing.jpg",
+                    emoji: "💪"
+                },
+                {
+                    number: 4,
+                    title: "The Blanket Nest Cannot Be Abandoned",
+                    text: "It took HOURS to achieve this perfect blanket nest configuration. HOURS! Do you know how long it takes a dachshund to burrow into exactly the right position? The vet can wait. The blankets cannot.",
+                    image: "images/molly-cozy.jpg",
+                    emoji: "🛏️"
+                },
+                {
+                    number: 5,
+                    title: "The Cold Table Trauma",
+                    text: "The metal table is COLD. Dachshunds are approximately 87% sausage and 13% drama. Cold tables are an affront to sausage dogs everywhere. It's basically a human rights violation. Dog rights? Wiener rights.",
+                    image: "images/molly-sad-eyes.jpg",
+                    emoji: "🥶"
+                },
+                {
+                    number: 6,
+                    title: "She Already Did Her Job Today",
+                    text: "Molly has already barked at exactly 3 suspicious leaves, supervised 2 meals, and performed 47 quality control sniffs today. That's a FULL workday. She's earned her rest, not a car ride to the scary place.",
+                    image: "images/molly-sweater.jpg",
+                    emoji: "📋"
+                }
+            ];
+
+            const evidence = [
+                { image: "images/molly-cozy.jpg", caption: "\"Your Honor, I present: maximum coziness\"", emoji: "😴" },
+                { image: "images/molly-sad-eyes.jpg", caption: "\"Exhibit B: The face of innocence\"", emoji: "🥺" },
+                { image: "images/molly-sweater.jpg", caption: "\"Exhibit C: Too stylish to be poked\"", emoji: "✨" },
+                { image: "images/molly-relaxing.jpg", caption: "\"Exhibit D: Clearly thriving\"", emoji: "😎" }
+            ];
+
+            return (
+                <div className="app-container" onClick={handleClick}>
+                    <PawBackground />
+                    <BarkEffect barks={barks} removeOldBarks={removeOldBarks} />
+
+                    <header className="hero">
+                        <span className="dog-emoji-header">🐕</span>
+                        <h1>Why Molly Should NOT Go to the Vet</h1>
+                        <p className="subtitle">A formal petition by Molly the Dachshund 🌭</p>
+                    </header>
+
+                    <section className="molly-card">
+                        <DogImage src="images/molly-cozy.jpg" alt="Molly looking adorable" fallbackEmoji="🐶" />
+                        <h2>Meet Molly! 🐾</h2>
+                        <p>
+                            This is Molly. She is a distinguished black dachshund with years of experience
+                            in avoiding the vet. Below, she presents her case for why she should absolutely,
+                            definitely, 100% NOT go to the vet today (or ever).
+                        </p>
+                        <p style={{marginTop: '10px', fontSize: '1.5rem'}}>
+                            🐾 🐾 🐾 🐾 🐾
+                        </p>
+                    </section>
+
+                    <section className="reasons-section">
+                        {reasons.map(reason => (
+                            <ReasonCard key={reason.number} {...reason} />
+                        ))}
+                    </section>
+
+                    <section className="evidence-section">
+                        <h2>⚖️ Exhibit A: Too Cute for Vet ⚖️</h2>
+                        <div className="evidence-gallery">
+                            {evidence.map((item, index) => (
+                                <div key={index} className="evidence-item">
+                                    <DogImage src={item.image} alt={`Evidence ${index + 1}`} fallbackEmoji={item.emoji} />
+                                    <p>{item.caption}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    <section className="petition-section">
+                        <h2>📝 Sign the Petition! 📝</h2>
+                        <p>
+                            Join Molly in her noble quest to avoid the scary place
+                            with the cold tables and the treat-bribery lies.
+                        </p>
+                        <div className="signature-counter" onClick={handleSign}>
+                            <span className="signature-number">{signatures.toLocaleString()}</span>
+                            Good Dogs Agree 🐕
+                        </div>
+                        <button className="sign-button" onClick={handleSign}>
+                            🐾 Click to Sign! 🐾
+                        </button>
+                    </section>
+
+                    <footer>
+                        <p>Made with 🐾 by Molly's Legal Defense Team</p>
+                        <p className="disclaimer">
+                            (Molly's humans would like to note that she DOES go to the vet
+                            because they love her very much 💕)
+                        </p>
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
 </html>
